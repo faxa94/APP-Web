@@ -1,0 +1,37 @@
+﻿<html ng-app="miapp">
+<head>
+    <meta charset="UTF-8">
+    <script src="js/angular.min.js"></script>
+    <style type="text/css">
+        .iconoEvaluacion{width:50px;}
+    </style>
+    <script type="text/javascript">
+     </script>
+</head>
+<body ng-controller="control1">
+    <h1>{{encuesta}}</h1>
+    <evaluacion name='a'></evaluacion>
+    <evaluacion name='b'></evaluacion>
+ <script>
+     var miapp = angular.module('miapp', [])
+     .controller('control1', function ($scope) {
+         $scope.encuesta = "Encuesta sobre servicios publicos";
+     })
+     .directive('evaluacion', function ($interval) {
+     var obj;
+     obj = {
+         restrict: 'E', link: function (scope, elemento, atributo) {
+             elemento.html("<input id='" + atributo.name + "' type='range' min='1' max='5'/>" + "<img id='" + atributo.name + "c' src='icontexto-emoticons-ICO/icontexto-emoticons-04.ico'/>");
+             elemento.on('change', function () {
+                 var p = document.getElementById(atributo.name);
+                 var pc = document.getElementById(atributo.name+'c');
+                 pc.src = 'icontexto-emoticons-ICO/icontexto-emoticons-0' + p.value + ".ico";
+             });
+            }
+     }
+     return obj;
+ });
+</script>
+    
+</body>
+</html>     

@@ -1,0 +1,49 @@
+<html ng-app="miapp">
+<head>
+    <script src="js/angular.min.js"></script>
+</head>
+<body ng-controller="control1">
+    {{titulo}}
+    <reloj modo="fecha" estilo="gal"/>
+<script>
+    var miapp = angular.module('miapp', [])
+    .controller('control1', function ($scope) {
+        $scope.titulo = "MI aplicacion";
+    })
+    .directive('reloj', function ($interval) {
+        var obj;
+        obj = {
+            restrict: 'E', link: function (scope, elemento, atributo) {
+                var activo = 1;
+                if (atributo.estilo == 'gal') {
+                    elemento.css({ backgroundColor: '#ffffcc', font:'18px Arial' })
+                }
+                elemento.html("Mi reloj: " + atributo.modo);
+                function imprimirHora() {
+                    var fn=new Date();
+                    if (atributo.modo == 'hora') {
+                        elemento.html(fn.toLocaleTimeString());
+                    } else
+                        {
+                        if (atributo.modo == 'fecha') {
+                            elemento.html(fn.toLocaleString());
+                        }
+                    }
+                }
+                var mireloj = $interval(imprimirHora, 1000);
+                elemento.on('click', function () {
+                    if (activo == 1) {
+                        activo = 0;
+                        $interval.cancel(mireloj);
+                    } else {
+                        activo = 1;
+                        mireloj = $interval(imprimirHora, 1000);
+                    }        
+                });
+            }
+        }
+        return obj;
+    })
+</script>
+</body>
+</html>

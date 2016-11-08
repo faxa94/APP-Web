@@ -1,0 +1,71 @@
+<html ng-app="miapp">
+<head>
+    <meta charset="UTF-8">
+    <script src="js/angular.min.js"></script>
+    <style type="text/css">
+        .iconoEvaluacion{width:50px;}
+        .pregunta
+        {
+                font:bold 16px Arial;}
+    </style>
+    <script type="text/javascript">
+        function mostrarIcono() {
+            var p = document.getElementById("puntos");
+            p.addEventListener('change', function () {
+                var valor = document.getElementById("puntos").value;
+                var cara = document.getElementById("cara").innerHTML = valor;
+            });
+        }
+        mostrarIcono();
+    </script>
+</head>
+<body ng-controller="control1">
+    <h1>{{encuesta}}</h1>
+    <form>
+    <table class='cuestionario'>
+    <tr>
+        <td colspan="5" class="pregunta">
+            <p>Que opina sobre del 
+                <img src="bus.gif" alt="bus" class="iconoEvaluacion"/>   ? <evaluacion /></p>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="5" class="pregunta">
+            <p>Que opina sobre del 
+                <img src="perro.gif" alt="bus" class="iconoEvaluacion"/>   ? <evaluacion /></p>
+        </td>
+    </tr>
+     <tr>
+        <td colspan="5" class="pregunta">
+            <p>Que opina sobre del 
+                <img src="parque.gif" alt="bus" class="iconoEvaluacion"/>   ? <evaluacion /></p>
+        </td>
+    </tr>
+    </table>
+    </form>
+ <script>
+    var miapp = angular.module('miapp', [])
+    .controller('control1', function ($scope) {
+        $scope.encuesta = "Encuesta sobre servicios publicos";
+
+    })
+.directive('evaluacion', function ($interval) {
+    var ppp = 11;
+    var obj;
+    obj = {
+        restrict: 'E', link: function (scope, elemento, atributo) {
+            elemento.html('<img src="' + ppp + '.png" class="iconoEvaluacion">');
+            elemento.on('click', function () {
+                ppp++;
+                if (ppp > 14) ppp = 11;
+                elemento.html('<img src="' + ppp + '.png " class="iconoEvaluacion"/>');
+            })
+        }
+
+    }
+    return obj;
+});
+   
+</script>
+</body>
+</html>

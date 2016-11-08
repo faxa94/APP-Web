@@ -1,0 +1,50 @@
+﻿
+<html ng-app="miapp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <script src="js/angular.min.js"></script>
+    <script> src = "bootstrap/js/bootstrap.min.js"</script>
+</head>
+<body ng-controller="control1">
+
+      <div class="btn-group">
+        <button type="button" class="btn-default dropdown-toggle" data-toggle="dato" ana-haspopup="true" aria-expanded="false" >
+            {{"Action"}}<span class="caret"></span>
+        </button>
+          <div style="background-color: #0072bc; width:200px; height:200px ">
+        <evaluacion style="color:white"> </evaluacion>   
+              <img src="donald.jpg" alt="Alternate Text" width="40" height="40" />
+              <br />
+         <evaluacion style="color:white"> </evaluacion>  
+                  <img src="HILARY.jpg" alt="Alternate Text" width="40" height="40" />
+                </div> 
+          
+       </div> 
+<script>
+    var miapp = angular.module('miapp', [])
+    .controller('control1', function ($scope) {})
+.directive('evaluacion', function ($interval) {
+    var etiqueta = ['nop','smile','aceptable','undefined', 'unlike'];
+    var ppp = 1;
+    var obj;
+    obj = {
+        restrict: 'E', link: function (scope, elemento, atributo) {
+            elemento.html('<img src="musica/cat_a' + ppp + '.gif" class="iconoEvaluacion">'+ppp+" "+etiqueta[ppp-1] );
+            elemento.on('click', function () {
+                ppp++;
+                if (ppp > 5) ppp = 1;
+                elemento.html('<img src="musica/cat_a' + ppp + '.gif " class="iconoEvaluacion"/> ' + ppp + " "+etiqueta[ppp - 1]);
+            })
+        }
+
+    }
+    return obj;
+});
+
+</script>
+    
+</body>
+</html>     

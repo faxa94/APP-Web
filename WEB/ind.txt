@@ -1,0 +1,20 @@
+<html ng-app="miapp">
+<head>
+    <script src="js/angular.min.js"></script>
+</head>
+<body ng-controller="control1">
+    {{titulo}}
+    <reloj modo="hora"/>
+<script>
+    var miapp = angular.module('miapp',[])
+    .controller('control1',function($scope){
+    $scope.titulo="MI aplicacion";
+    })
+    .directive('reloj',function($interval){
+        var obj;
+        obj = { restrict: 'E', template: 'MI reloj{{modo}}', scope: { modo: '@' }}
+        return obj;
+    })
+</script>
+</body>
+</html>
