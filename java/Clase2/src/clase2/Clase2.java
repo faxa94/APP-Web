@@ -16,6 +16,7 @@ public class Clase2 {
      */
     public static void main(String[] args) {
         System.out.println("hola mundos");
+        System.out.println("Inge puedo presentar el proyecto en github?");
     }
     
 }
